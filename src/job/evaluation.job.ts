@@ -3,12 +3,14 @@ async  function notifyEvaluationService(
     code: string,
     problem_title: string,
     language: string,
-socketId: string)
+    user_name:string,
+
+)
     {
-    const job = await submissionQueue.add("evaluation", { code, problem_title,language,socketId }, { attempts:  2,backoff: {
+    const job = await submissionQueue.add("evaluation", { code, problem_title,language,user_name}, { attempts:  2,backoff: {
         type: 'exponential',
         delay: 3000
       }});
-    return job.id;
+    return job;
     }
     export default notifyEvaluationService;

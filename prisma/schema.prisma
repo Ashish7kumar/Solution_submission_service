@@ -1,0 +1,26 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../build/generated/client"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+model Submission{
+  id              String   @id @default(auto()) @map("_id")  @db.ObjectId
+  userName          String
+  problemName       String
+  code            String
+  language        String
+  status          String   @default("Pending") 
+  // testCasesPassed Int      @default(0)
+  // totalTestCases  Int      @default(0)
+  submittedAt     DateTime @default(now())
+}
