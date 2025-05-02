@@ -1,10 +1,10 @@
-import { Router } from "express";
+
 import { Request ,Response} from "express";
-const submissionRouter=Router();
+
 import notifyEvaluationService from "../job/evaluation.job";
 import { QueueEvents } from "bullmq";
 const queueEvents=new QueueEvents("submissionQueue");
-submissionRouter.post('/submit/:user/:problem',async (req:Request,res:Response)=>
+export async function submissionAdditionController(req:Request,res:Response)
 {   try{
     
     const language=req.body.language;
@@ -32,6 +32,19 @@ submissionRouter.post('/submit/:user/:problem',async (req:Request,res:Response)=
             
         }
 
-
-});
-export default submissionRouter;
+};
+export async function getAllSubmissionOfUser(req:Request,res:Response) {
+    res.status(501).send('Not_implemented');
+}
+export async function getAllSubmissionsOfProblem(req:Request,res:Response) {
+    res.status(501).send('Not_implemented');
+}
+export async function getSubmissionOfUserforProblem(req:Request,res:Response) {
+    res.status(501).send('Not_implemented');
+}
+export async function updateProblemName(req:Request,res:Response) {
+    res.status(501).send('Not_implemented');
+}
+export async function updateUserName(req:Request,res:Response) {
+    res.status(501).send('Not_implemented');
+}

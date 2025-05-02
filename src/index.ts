@@ -3,7 +3,7 @@ import notifyEvaluationService from "./job/evaluation.job";
 import submissionQueue from "./Queue/Submission.queue";
 const app = express();
 app.use(express.json());
-import submissionRouter from "./controllerAndRoute/submit.controller";
+import { submissionRouter } from "./routes/submission.route";
 
 
 app.use('/',submissionRouter);
