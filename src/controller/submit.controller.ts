@@ -3,6 +3,7 @@ import { Request ,Response} from "express";
 
 import notifyEvaluationService from "../job/evaluation.job";
 import { QueueEvents } from "bullmq";
+import NotImplementedError from "../errors/notImplemented.error";
 const queueEvents=new QueueEvents("submissionQueue");
 export async function submissionAdditionController(req:Request,res:Response)
 {   try{
@@ -34,17 +35,17 @@ export async function submissionAdditionController(req:Request,res:Response)
 
 };
 export async function getAllSubmissionOfUser(req:Request,res:Response) {
-    res.status(501).send('Not_implemented');
+    throw  new NotImplementedError('will implement ');
 }
 export async function getAllSubmissionsOfProblem(req:Request,res:Response) {
-    res.status(501).send('Not_implemented');
+  throw  new NotImplementedError('will implement ');
 }
 export async function getSubmissionOfUserforProblem(req:Request,res:Response) {
-    res.status(501).send('Not_implemented');
+    throw  new NotImplementedError('will implement ');
 }
 export async function updateProblemName(req:Request,res:Response) {
-    res.status(501).send('Not_implemented');
+    throw  new NotImplementedError('will implement ');
 }
 export async function updateUserName(req:Request,res:Response) {
-    res.status(501).send('Not_implemented');
+    throw  new NotImplementedError('will implement ');
 }
