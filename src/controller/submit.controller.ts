@@ -3,8 +3,12 @@ import { Request ,Response} from "express";
 
 import notifyEvaluationService from "../job/evaluation.job";
 import { QueueEvents } from "bullmq";
+import { PrismaClient } from '@prisma/client'
+
 import NotImplementedError from "../errors/notImplemented.error";
+import BadRequestError from "../errors/BadRequest.error";
 const queueEvents=new QueueEvents("submissionQueue");
+const prisma = new PrismaClient();
 export async function submissionAdditionController(req:Request,res:Response)
 {   try{
     
@@ -35,16 +39,41 @@ export async function submissionAdditionController(req:Request,res:Response)
 
 };
 export async function getAllSubmissionOfUser(req:Request,res:Response) {
-    throw  new NotImplementedError('will implement ');
+  
+    const userSubmissions=await prisma.submission.findMany({
+    where:{
+      userName:req.params.user
+    }
+   })
+   res.status(200).json({
+    submissions:userSubmissions
+   })
 }
 export async function getAllSubmissionsOfProblem(req:Request,res:Response) {
-  throw  new NotImplementedError('will implement ');
+  
+    const problemSubmissions=await prisma.submission.findMany({
+        where:{
+            problemName:req.params.problem
+        }
+    })
+    res.status(200).json({
+        submissions:problemSubmissions
+    })
 }
 export async function getSubmissionOfUserforProblem(req:Request,res:Response) {
-    throw  new NotImplementedError('will implement ');
+  
+    const userSubmissionsforProblem=await prisma.submission.findMany({
+    where:{
+        problemName:req.params.problem,
+        userName:req.params.user
+    }
+  })
+  res.status(200).json({
+    submissions:userSubmissionsforProblem
+})
 }
 export async function updateProblemName(req:Request,res:Response) {
-    throw  new NotImplementedError('will implement ');
+   throw new NotImplementedError('will implement');
 }
 export async function updateUserName(req:Request,res:Response) {
     throw  new NotImplementedError('will implement ');
